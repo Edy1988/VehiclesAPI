@@ -1,7 +1,8 @@
 HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
-
+.idea/compiler.xml
+.DS_Store
 ### STS ###
 .apt_generated
 .classpath
