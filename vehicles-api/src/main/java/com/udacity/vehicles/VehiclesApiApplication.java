@@ -11,11 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.reactive.function.client.WebClient;
 
-/**
- * Launches a Spring Boot application for the Vehicles API,
- * initializes the car manufacturers in the database,
- * and launches web clients to communicate with maps and pricing.
- */
+
 @SpringBootApplication
 @EnableJpaAuditing
 public class VehiclesApiApplication {
@@ -24,11 +20,6 @@ public class VehiclesApiApplication {
         SpringApplication.run(VehiclesApiApplication.class, args);
     }
 
-    /**
-     * Initializes the car manufacturers available to the Vehicle API.
-     * @param repository where the manufacturer information persists.
-     * @return the car manufacturers to add to the related repository
-     */
     @Bean
     CommandLineRunner initDatabase(ManufacturerRepository repository) {
         return args -> {

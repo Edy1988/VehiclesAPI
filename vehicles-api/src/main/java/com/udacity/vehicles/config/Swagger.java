@@ -14,8 +14,7 @@ import java.util.Collections;
 
 @Configuration
 @EnableSwagger2
-
-public class SwaggerConfig {
+public class Swagger {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -25,14 +24,14 @@ public class SwaggerConfig {
                 .build()
                 .apiInfo(apiInfo());
     }
+
     private ApiInfo apiInfo() {
         return new ApiInfo(
                 "Vehicles API",
                 "This API returns vehicle information.",
                 "1.0",
                 "http://www.udacity.com/tos",
-                new Contact("Edyta", "www.udacity.com", "myeaddress@udacity.com"),
+                new Contact("Edyta", "www.udacity.com", "myaddress@udacity.com"),
                 "License of API", "http://www.udacity.com/license", Collections.emptyList());
     }
-
 }

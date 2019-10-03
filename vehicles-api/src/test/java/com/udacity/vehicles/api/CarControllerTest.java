@@ -31,6 +31,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Implements testing of the CarController class.
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -52,6 +55,9 @@ public class CarControllerTest {
     @MockBean
     private MapsClient mapsClient;
 
+    /**
+     * Creates pre-requisites for testing, such as an example car.
+     */
     @Before
     public void setup() {
         Car car = getCar();
@@ -61,7 +67,10 @@ public class CarControllerTest {
         given(carService.list()).willReturn(Collections.singletonList(car));
     }
 
-
+    /**
+     * Tests for successful creation of new car in the system
+     * @throws Exception when car creation fails in the system
+     */
     @Test
     public void createCar() throws Exception {
         Car car = getCar();
@@ -73,7 +82,10 @@ public class CarControllerTest {
                 .andExpect(status().isCreated());
     }
 
-
+    /**
+     * Tests if the read operation appropriately returns a list of vehicles.
+     * @throws Exception if the read operation of the vehicle list fails
+     */
     @Test
     public void listCars() throws Exception {
         mvc.perform(get("/cars").header("Content-Type",MediaType.APPLICATION_JSON_UTF8_VALUE))
@@ -83,7 +95,10 @@ public class CarControllerTest {
                 .andExpect(jsonPath("$.*.carList[0].details.model").value("Impala"));
     }
 
-
+    /**
+     * Tests the read operation for a single car by ID.
+     * @throws Exception if the read operation for a single car fails
+     */
     @Test
     public void findCar() throws Exception {
         Car car = getCar();
@@ -119,7 +134,10 @@ public class CarControllerTest {
                 .andExpect(jsonPath("$.condition").value("USED"));
     }
 
-
+    /**
+     * Tests the deletion of a single car by ID.
+     * @throws Exception if the delete operation of a vehicle fails
+     */
     @Test
     public void deleteCar() throws Exception {
         Car car = getCar();
@@ -131,7 +149,10 @@ public class CarControllerTest {
 
     }
 
-
+    /**
+     * Creates an example Car object for use in testing.
+     * @return an example Car object
+     */
     private Car getCar() {
         Car car = new Car();
         car.setLocation(new Location(40.730610, -73.935242));
